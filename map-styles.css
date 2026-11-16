@@ -1,0 +1,131 @@
+/* A two-colour festival poster. The shadows belong to the silhouette, not the labels. */
+.atlas {
+  background:#d74946;
+  background-image:radial-gradient(ellipse at 18% 15%,#ed6752,transparent 57%),
+    repeating-linear-gradient(45deg,transparent 0 5px,#fff0ca09 5px 6px);
+  color:#fff5df;
+}
+.atlas-heading h1,.atlas-foot,.descend,.compass {color:#fff6e5}
+.background-waves {position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.background-waves svg {
+  position:absolute;height:auto;fill:none;stroke:#ffe7cc;stroke-width:1.35;stroke-linecap:round;
+  animation:paper-wave 1.25s cubic-bezier(.18,.58,.33,1) both;
+}
+@keyframes paper-wave {
+  0% {opacity:0;transform:translate(-50%,-50%) rotate(var(--tilt)) scale(.42)}
+  23% {opacity:.52}
+  100% {opacity:0;transform:translate(-50%,-54%) rotate(var(--tilt)) scale(1.14)}
+}
+.lift .region {pointer-events:visiblePainted;cursor:pointer}
+@media(hover:hover){
+  .province {transition:fill .32s ease,stroke .32s ease}
+  .atlas:not(.show-footprints) .province:hover {fill:#fffaf0;stroke:#b87361}
+}
+.atlas-story {position:relative;isolation:isolate;background:#fff1e5}
+.atlas-story .about {position:relative;z-index:1;margin-bottom:0}
+.atlas-story + .news {margin-top:54px}
+@media(prefers-reduced-motion:no-preference){
+  html {scroll-behavior:smooth}
+  .atlas {position:sticky;top:0}
+  .map-plate {translate:0 var(--map-drift,0px)}
+  .atlas-story .about {
+    margin-top:clamp(32px,7svh,76px);
+    --blend-depth:clamp(96px,22svh,220px);
+    padding-top:calc(var(--blend-depth) + clamp(16px,2.8vw,44px));
+    background:linear-gradient(to bottom,transparent 0,#fff1e52b calc(var(--blend-depth)*.22),
+      #fff1e5c2 calc(var(--blend-depth)*.66),#fff1e5 var(--blend-depth));
+  }
+  .about-staged :is(.about-heading,.about-motto,.about-copy,.about-photo) {
+    opacity:0;translate:0 14px;
+    transition:opacity .78s ease,translate .85s cubic-bezier(.18,.67,.26,1);
+  }
+  .about-staged .about-photo {translate:0 20px}
+  .about-staged .about-motto {translate:0 6px;transition-duration:1.1s,1.1s}
+  .about-staged .in-view {
+    opacity:1;translate:0 0;
+    transition-delay:var(--entry-delay,0ms);
+  }
+  .about-staged .about-copy:focus-within {
+    opacity:1;translate:0 0;transition:none;
+  }
+}
+.atlas::after {
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:#fff1e5;opacity:var(--exit-fade,0);
+}
+.compass i {background:#fff0cd}
+.atlas-foot {border-color:#f6d1ae99}
+.province {fill:#fff0cf;stroke:#c8896f}
+.region {fill:#ffb08a;stroke:#9d3741}
+.map-context {
+  filter:drop-shadow(1px 4px 0 #96333588) blur(0);opacity:1;
+  transition:filter .5s ease,opacity .5s ease;
+}
+.show-footprints .map-context {filter:blur(1.7px);opacity:.45}
+
+.legend i {background:#ffada0;border-color:#ffe4cb}
+
+@media(min-width:701px) and (min-height:520px){
+  .atlas-heading {justify-self:end;align-self:end;text-align:right;margin-bottom:12px}
+  .map-plate {margin-left:-4%;margin-right:4%}
+}
+
+.atlas-heading {animation:plate-appear 1.4s ease-out both}
+.atlas-heading h1 {margin:0;font:500 clamp(33px,min(4.3vw,6.8svh),64px)/1.2 "KaiTi","STKaiti","Songti SC",var(--editorial);letter-spacing:.035em}
+.map-plate {animation:plate-appear 2.6s ease-out both}
+.province {animation:province-ink 2s var(--arrival) ease-in-out both}
+#xinjiang {animation:plate-appear 2.25s 1.1s both}
+.atlas-foot {animation:plate-appear 1.6s .4s both}
+@keyframes plate-appear {from{opacity:0} to{opacity:1}}
+@keyframes province-ink {from{opacity:.12} to{opacity:1}}
+.lift {transform-origin:center;transform:translate(5px,-2px) scale(1.12)}
+.region {filter:drop-shadow(0 1.8px 0 #bd6d5b)}
+.show-footprints .lift {transform:translate(84px,20px) scale(2);filter:none}
+.show-footprints .region {fill:url(#xinjiang-paper);stroke:#fff1ce;stroke-width:1.3;filter:drop-shadow(0 1.5px 0 #b9705d) drop-shadow(1px 5px 4px #732d3460)}
+.show-footprints .district-line {stroke:#a46a60;stroke-width:.25}
+@media(prefers-reduced-motion:no-preference){
+  .show-footprints .city-annotations {animation:read-cities .65s ease-out both}
+  @keyframes read-cities {0%,26%{opacity:0} 100%{opacity:1}}
+}
+.show-footprints .lift .region {pointer-events:visiblePainted;cursor:pointer}
+.district-line {fill:none;stroke:#b7645e;stroke-width:.35;stroke-linejoin:round}
+.place-name {
+  font-size:5.5px;font-weight:500;fill:#f9ebda;
+  paint-order:stroke fill;stroke:#773d41;stroke-width:.7px;
+  filter:drop-shadow(0 0 .35px #fff2d54d);
+}
+.leader {stroke:#84484b;stroke-width:.4;stroke-linecap:round;stroke-linejoin:round}
+.city-hit {fill:transparent;stroke:none}
+.city-link {pointer-events:all;cursor:pointer;user-select:none}
+.city-shape {cursor:pointer}
+.show-footprints .city-shape {pointer-events:all}
+/* Keep the zoom open while crossing the gap from the province to a label. */
+.show-footprints .lift {pointer-events:bounding-box}
+.show-footprints :is(.district-line,.wash,.leader,.city-annotations circle) {pointer-events:none}
+.city-link:is(:hover,:focus-visible) .place-name {animation:none;fill:#fffef6;filter:drop-shadow(0 0 .85px #fff1cb)}
+.city-link:focus-visible .place-name {text-decoration:underline}
+.city-link:focus {outline:none}
+#xinjiang .hit:focus-visible {outline:none;stroke:#742139;stroke-width:2}
+.atlas-heading .map-hint {margin:.45em 0 0;color:#fff8e7;font:500 clamp(12px,1vw,14px)/1.55 var(--body);letter-spacing:.03em}
+.atlas-heading .map-hint span {color:inherit;padding:0}
+@media(max-width:700px){
+  .atlas-heading h1 {font-size:clamp(33px,8vw,46px)}
+  .place-name {font-size:6.5px}
+}
+@media(max-height:500px) and (min-width:701px){
+  .place-name {font-size:7px}
+}
+.visited {stroke-width:.45}
+.wash,.place-name {animation:city-light 16s ease-in-out var(--beat) infinite}
+.place-name {animation-name:city-name-light}
+@keyframes city-light {0%,17%,100%{opacity:.06} 5%{opacity:.88}}
+@keyframes city-name-light {
+  0%,17%,100% {fill:#f9ebda;filter:drop-shadow(0 0 .35px #fff2d54d)}
+  5% {fill:#fffef6;filter:drop-shadow(0 0 1.25px #fff1cbe8)}
+}
+@media(prefers-reduced-motion:reduce){
+  .atlas::after {opacity:0}
+  .atlas-heading,.map-plate,.province,#xinjiang,.atlas-foot,.wash,.place-name {animation:none}
+  .wash {opacity:.16}
+  .map-context {transition:none}
+}

@@ -1,0 +1,90 @@
+.field-journal {
+  --trail-red:#9f2333;
+  --trail-track:#d8c5ae;
+  --rail-width:clamp(52px,9vw,118px);
+  width:min(1080px,92%);margin:auto;
+  padding:calc(var(--nav-height) + var(--nav-gap) + clamp(34px,5vw,70px)) 0 48px;
+}
+.field-journal .archive-heading h1 {
+  margin:12px 0 6px;color:var(--trail-red);font:400 clamp(44px,6vw,78px)/1.15 var(--display);
+}
+.field-journal .archive-heading p,.season-lead,.stop-copy h3+p {color:#574d44;line-height:1.85}
+.field-journal .contents {margin:24px 0 clamp(24px,3vw,42px);gap:28px}
+.field-journal .contents a {color:var(--muted);font-weight:550}
+.field-journal .contents a:is(:hover,[aria-current]) {color:var(--trail-red);text-decoration:underline;text-underline-offset:6px}
+.trail-season {position:relative}
+.trail-step,.trail-source {position:relative;padding-left:var(--rail-width)}
+.trail-step {padding-bottom:clamp(28px,4vw,54px)}
+.trail-step::before,.trail-season:not(:last-child) .trail-source::before {
+  content:"";position:absolute;inset:0 auto 0 0;pointer-events:none;
+  background:linear-gradient(to bottom,var(--trail-red) var(--trail-fill,100%),var(--trail-track) var(--trail-fill,100%));
+}
+.trail-step::before {
+  width:var(--rail-width);
+  mask:url("assets/practice/trail-wave.svg") center / 100% 100% no-repeat;
+}
+.trail-step::after {
+  content:"";position:absolute;left:calc(var(--rail-width) / 2);top:0;
+  width:9px;height:9px;box-sizing:border-box;transform:translate(-50%,-50%);
+  border-radius:50%;background:var(--paper);border:1.5px solid #b09b83;
+  transition:background-color .18s,border-color .18s,box-shadow .18s;
+}
+.season-intro::after {width:14px;height:14px;border-width:2px}
+.trail-step.is-reached::after {background:var(--trail-red);border-color:var(--trail-red)}
+.trail-step.is-current::after {background:var(--trail-red);border-color:var(--trail-red);box-shadow:0 0 0 4px #9f233318}
+.season-date,.stop-place {
+  margin:0;color:var(--trail-red);font:600 14px/1.55 var(--body);letter-spacing:.08em;
+}
+.season-date {padding-top:0}
+.season-intro h2 {margin:8px 0 10px;font-size:clamp(30px,3.6vw,48px);line-height:1.32;text-wrap:balance}
+.season-lead {max-width:46em}
+.stop-alias {position:absolute;top:0}
+.trail-stop,.stop-alias {scroll-margin-top:clamp(30px,5vh,54px)}
+.stop-record {
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.86fr);
+  gap:clamp(24px,5vw,64px);align-items:start;padding-bottom:22px;border-bottom:1px solid var(--line);
+}
+.trail-stop::after {pointer-events:none}
+.stop-heading {margin:5px 0 12px;font:600 clamp(21px,2.4vw,30px)/1.4 var(--editorial)}
+.trail-stop:target .stop-heading {color:var(--trail-red)}
+.trail-stop:target::after {background:var(--trail-red);box-shadow:0 0 0 4px #9f233318}
+.stop-copy h3+p {margin:0;font-size:15px}
+.stop-photos {display:grid;gap:16px}
+.stop-photos figure {margin:0}
+.trail-stop figure img {display:block;width:100%;height:auto;border-radius:4px}
+.trail-stop figcaption {display:block;margin:6px 0 0;color:var(--muted);font-size:12px}
+.trail-source {margin:0;font-size:12px;color:var(--muted);padding-bottom:clamp(36px,5vw,72px)}
+.trail-season:not(:last-child) .trail-source::before {
+  left:calc(var(--rail-width) / 2);width:2px;transform:translateX(-50%);
+}
+.season-film {max-width:840px;margin:22px 0 0}
+.season-film figcaption {
+  justify-content:space-between;gap:12px;padding:8px 0;color:var(--trail-red);font:600 15px/1.5 var(--editorial);
+}
+.season-film figcaption span {font:500 13px/1.5 var(--body);font-variant-numeric:tabular-nums;color:var(--muted)}
+.film-frame {position:relative;overflow:hidden;background:#29221c;border-radius:6px}
+.film-frame video {display:block;width:100%;aspect-ratio:16 / 9;object-fit:contain}
+.film-play {
+  position:absolute;inset:0;display:grid;place-items:center;width:100%;height:100%;border:0;
+  color:white;background:linear-gradient(0deg,#20181047,transparent 55%);
+}
+.film-play span {
+  display:grid;place-items:center;padding-left:3px;width:62px;height:62px;border-radius:50%;
+  background:#812635ed;border:1px solid #ffe9c5c9;font:20px/1 system-ui;
+}
+.film-play:hover span {background:#9f2333}
+.film-play:focus-visible {outline:3px solid #ffe9c5;outline-offset:-5px}
+.film-play[hidden] {display:none}
+.film-fallback {color:var(--trail-red);text-decoration:underline}
+@media(max-width:650px){
+  .field-journal {--rail-width:33px}
+  .field-journal .contents {margin-top:16px}
+  .stop-record {grid-template-columns:minmax(0,1fr);gap:16px}
+  .season-lead {font-size:15px}
+  .season-intro h2 {font-size:clamp(26px,7vw,36px)}
+  .film-play span {width:48px;height:48px}
+}
+@media(prefers-reduced-motion:reduce){
+  .trail-step::before,.trail-season:not(:last-child) .trail-source::before {background:var(--trail-red)}
+  .trail-step::after {transition:none}
+}

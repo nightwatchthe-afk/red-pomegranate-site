@@ -1,0 +1,115 @@
+@font-face {
+  font-family:"Pomegranate Sans";src:url("assets/nav-fonts/nav.ttf") format("truetype");
+  font-weight:500;font-display:swap;
+}
+.site-header {
+  --nav-red:#9f2333;--nav-ink:#662637;--nav-paper:#fff3e8;
+  position:fixed;inset:var(--nav-gap) 0 auto;margin-inline:auto;
+  width:min(1080px,92%);z-index:9;color:var(--nav-ink);
+  font:500 14px/1.5 "Pomegranate Sans","Noto Sans SC",var(--body);
+}
+.nav-inner {
+  height:var(--nav-height);padding-inline:clamp(14px,2.8vw,42px);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  border:1px solid #e8c6a3;border-radius:999px;background:var(--nav-paper);
+  box-shadow:inset 0 1px 0 #ffffffdc,0 4px 18px #68221e26;
+}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .nav-inner {
+    background:linear-gradient(115deg,#fff9edea,#ffede5b8 65%,#fff5e8d9);
+    -webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);
+  }
+}
+.nav-brand {display:flex;align-items:center;gap:9px;line-height:1.2;white-space:nowrap}
+.nav-brand .school-emblem {width:46px;height:46px;clip-path:circle(43.3%)}
+.nav-brand .team-emblem {width:auto;height:40px}
+.nav-brand strong,.nav-brand small {display:block}
+.nav-brand strong {font:400 24px/1.15 var(--display);color:#852a3b;margin-top:4px;letter-spacing:.04em}
+.nav-brand small {font:650 11px/1.2 var(--body);letter-spacing:.17em;color:#154e8d}
+.site-header a,.site-header summary,.site-header button {touch-action:manipulation;-webkit-tap-highlight-color:#9f233312}
+.site-header :focus-visible {outline:2px solid currentColor;outline-offset:3px;border-radius:3px}
+#site-nav {display:flex;align-items:center;gap:clamp(28px,2.4vw,36px)}
+#site-nav details {position:relative}
+.nav-item {position:relative;display:flex;align-items:center;gap:7px;height:48px;white-space:nowrap;cursor:pointer}
+.nav-item::-webkit-details-marker {display:none}
+summary.nav-item {list-style:none}
+summary.nav-item::after {
+  content:"";width:5px;height:5px;border-right:1px solid;border-bottom:1px solid;
+  transform:translateY(-2px) rotate(45deg);transition:transform .18s;
+}
+details[open] > summary.nav-item::after {transform:translateY(1px) rotate(225deg)}
+.nav-split {display:inline-grid;grid-template-columns:max-content 22px;align-items:center;position:relative;flex:none}
+#site-nav .nav-split details {position:static}
+.nav-split summary.nav-item {width:22px;justify-content:center}
+.nav-item::before {
+  content:"";position:absolute;left:0;bottom:5px;width:18px;height:2px;
+  background:var(--nav-red);opacity:0;transition:opacity .2s;
+}
+.nav-item.current::before {opacity:1}
+@media(hover:hover){.nav-item:hover::before {opacity:1}}
+.site-header :is(.nav-item.current,.nav-item:hover,details[open] > summary) {color:var(--nav-red)}
+.nav-sub {
+  position:absolute;left:-16px;top:100%;width:185px;list-style:none;margin:0;padding:8px;
+  border:1px solid #e5dcd2;border-radius:11px;background:#fffcf7;color:var(--nav-ink);
+  box-shadow:0 7px 22px #3a241512;font-size:14px;
+}
+.nav-sub a,.nav-pending {display:flex;align-items:center;justify-content:space-between;min-height:40px;padding:6px 10px}
+.nav-sub a {border-radius:5px}
+.nav-sub a:hover,.nav-sub a[aria-current] {background:#f6e9e5;color:var(--nav-red)}
+.nav-pending {color:#645d59}
+.nav-pending small {font-size:11px;color:#6c625e}
+.nav-contact {
+  justify-self:end;display:inline-flex;align-items:center;justify-content:center;
+  min-height:40px;padding-inline:20px;border-radius:8px;background:var(--nav-red);color:white;
+  font-size:14px;white-space:nowrap;transition:background-color .2s;
+}
+.site-header .nav-contact:hover {background:#811c2a;color:white}
+.nav-toggle,.nav-close {
+  width:44px;height:44px;border:0;padding:0;background:none;color:inherit;cursor:pointer;
+}
+.nav-toggle {display:none}
+.nav-toggle span {display:block;width:21px;height:9px;border-block:1.5px solid;margin:auto}
+#mobile-nav {padding:0;color:var(--nav-ink);background:var(--nav-paper);border:none;font:inherit}
+#mobile-nav::backdrop {background:#23171c59}
+.nav-locked {overflow:hidden;scrollbar-gutter:stable}
+.panel-head {display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #dcd3c9}
+.panel-head h2 {font:inherit;margin:0}
+.nav-close {font:normal 27px/1 Arial,sans-serif}
+@media(min-width:900px) and (max-width:990px){
+  .nav-inner {padding-inline:18px}
+  #site-nav {gap:20px}
+}
+@media(max-width:899px){
+  .site-header {width:calc(100% - 16px)}
+  .nav-inner {padding-inline:12px;gap:7px}
+  .nav-brand {gap:5px}
+  .nav-brand .school-emblem {width:36px;height:36px}
+  .nav-brand .team-emblem {height:32px}
+  .nav-brand strong {font-size:19px}
+  .nav-brand small {font-size:10px;letter-spacing:.08em}
+  .nav-inner #site-nav,.nav-inner .nav-contact {display:none}
+  .nav-toggle {display:block}
+  #mobile-nav {
+    position:fixed;inset:0 0 auto auto;margin:0;width:min(100%,420px);max-width:100%;
+    max-height:100dvh;overflow:auto;overscroll-behavior:contain;border-radius:0 0 0 12px;
+    padding:8px max(22px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) 22px;
+  }
+  #mobile-nav[open] {animation:nav-panel-in .22s ease-out}
+  @keyframes nav-panel-in {from{transform:translateY(-8px);opacity:.6}to{transform:none;opacity:1}}
+  #mobile-nav #site-nav {display:block}
+  .nav-item {height:52px;justify-content:space-between;padding-inline:2px;border-bottom:1px solid #e0d7cc}
+  .nav-item.current {color:var(--nav-red)}
+  .nav-item::before {bottom:4px}
+  summary.nav-item::after {margin-right:6px}
+  .nav-split {display:grid;grid-template-columns:1fr 44px}
+  .nav-split details {display:contents}
+  .nav-split details:not([open]) > .nav-sub {display:none}
+  .nav-split summary.nav-item {width:44px}
+  .nav-split .nav-sub {grid-column:1 / -1}
+  .nav-sub {position:static;width:auto;padding:3px 4px 8px 12px;border:0;border-radius:0;background:transparent;box-shadow:none}
+  .nav-sub a,.nav-pending {min-height:44px}
+  .panel-content .nav-contact {margin-top:20px;min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-header,.site-header *,.site-header ::before,.site-header ::after {transition:none!important;animation:none!important}
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111011">
+  <title>联系我们 · 红石榴实践队</title>
+<link rel="stylesheet" href="guide.css?v=wave">
+<script defer src="guide-knowledge.js"></script><script defer src="guide.js?v=wave"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="navbar.css?v=trail-nav-2">
+  <link rel="stylesheet" href="contact.css?v=letter-pace">
+</head>
+<body id="top">
+<a class="skip" href="#contact">跳到联系方式</a>
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html#top" aria-label="北京航空航天大学红石榴实践队首页">
+      <img class="school-emblem" src="assets/beihang-emblem.jpg" width="48" height="48" alt="北航校徽">
+      <img class="team-emblem" src="assets/team-emblem.png" width="311" height="384" alt="红石榴实践队队徽">
+      <span><small>北京航空航天大学</small><strong>红石榴实践队</strong></span>
+    </a>
+    <nav id="site-nav" aria-label="主导航"><a href="index.html#top">首页</a> <a href="index.html#about">关于我们</a> <a href="index.html#news">最新动态</a></nav>
+    <a class="nav-contact" href="#top" aria-current="page">联系我们</a>
+    <button class="nav-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-nav"><span aria-hidden="true"></span></button>
+  </div>
+  <dialog id="mobile-nav" aria-labelledby="mobile-nav-title">
+    <div class="panel-head"><h2 id="mobile-nav-title">网站导航</h2><button type="button" class="nav-close" aria-label="关闭导航菜单">×</button></div>
+    <div class="panel-content"></div>
+  </dialog>
+</header>
+<main>
+  <section class="gallery-scroll" aria-label="红石榴实践影集">
+    <div class="gallery-stage">
+      <div class="photo-wall" role="img" aria-label="实践照片墙：冬日球场上的合影、果园走访、课堂交流和新疆田野风光">
+        <div class="wall-plane"></div>
+      </div>
+      <div class="wall-shade" aria-hidden="true"></div>
+      <div class="wall-caption">
+        <p>红石榴实践影集</p>
+        <h1>在新疆，<br>我们相遇。</h1>
+      </div>
+      <div class="wall-controls">
+        <a class="scroll-cue" href="#contact"><span aria-hidden="true">↓</span> 下滑，联系我们</a>
+        <button type="button" id="wall-motion" aria-pressed="false" hidden>暂停照片墙</button>
+      </div>
+    </div>
+  </section>
+  <section class="contact-letter" id="contact" aria-labelledby="contact-title" tabindex="-1">
+    <div class="letter-content">
+      <div class="letter-intro">
+        <p class="salutation" data-float-at="0">致关心新疆的你</p>
+        <h2 id="contact-title" data-float-at="75">联系我们</h2>
+        <p class="invitation" data-float-at="205">如果你也关心科技如何走进新疆的社区、校园与田野，欢迎来信，和我们聊聊下一次实践。</p>
+      </div>
+      <dl class="addresses">
+        <div class="address">
+          <dt data-float-at="365">团队邮箱</dt>
+          <dd><a id="team-email" href="mailto:buaahongshiliu@163.com" data-float-at="415">buaahongshiliu@163.com</a><button type="button" id="copy-email" data-float-at="495" hidden>复制邮箱</button></dd>
+        </div>
+        <div class="address">
+          <dt data-float-at="575">微信公众号</dt>
+          <dd><span data-float-at="635">石榴观察站</span><a id="open-qr" href="assets/contact/wechat.png" aria-haspopup="dialog" data-float-at="705">查看二维码</a></dd>
+        </div>
+      </dl>
+      <p class="copy-status" role="status"></p>
+    </div>
+  </section>
+</main>
+<footer class="contact-footer"><span>北京航空航天大学 · 红石榴实践队</span><span>石榴结籽，科技铸疆</span></footer>
+<dialog class="qr-dialog" id="qr-dialog" aria-labelledby="qr-name">
+  <form method="dialog"><button aria-label="关闭二维码" autofocus>×</button></form>
+  <h2 id="qr-name">石榴观察站</h2>
+  <img src="assets/contact/wechat.png" width="249" height="250" alt="红石榴实践队公众号石榴观察站的二维码">
+  <p>用微信扫一扫或长按识别</p>
+</dialog>
+<script src="navbar.js?v=trail-nav-2"></script>
+<script src="contact.js?v=letter-pace"></script>
+</body>
+</html>
