@@ -17,7 +17,13 @@
 .press-heading h1 > :nth-child(2) {transform:translateY(.022em) scale(1.01)}
 .press-heading h1 > :nth-child(3) {transform:translateY(-.053em) scale(1.09)}
 .press-heading h1 > :nth-child(4) {transform:translateY(-.036em)}
-#press-pinned {margin-top:clamp(16px,2vw,26px)}
+#press-pinned {
+  --line:#dfcfa6;
+  margin-top:clamp(16px,2vw,26px);
+  padding:clamp(16px,2.5vw,32px);
+  background:#f8edcf;
+  border-radius:8px;
+}
 #reports-title {
   font:600 clamp(21px,2.3vw,28px)/1.4 var(--editorial);
   margin:24px 0 16px;
@@ -35,6 +41,7 @@
   align-items:center;gap:16px;padding:14px 0;
 }
 .feature-list > li:nth-child(2) .feature-link {padding-top:0}
+.feature-list > li:last-child .feature-link {padding-bottom:0}
 .feature-link:hover .feature-title,.feature-link:focus-visible .feature-title {color:#9f2333}
 .feature-link .entry-meta {font-variant-numeric:tabular-nums}
 .feature-photo {
