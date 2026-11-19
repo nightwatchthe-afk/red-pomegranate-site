@@ -14,11 +14,13 @@
   border:1px solid #e8c6a3;border-radius:999px;background:var(--nav-paper);
   box-shadow:inset 0 1px 0 #ffffffdc,0 4px 18px #68221e26;
 }
+.nav-inner {transition:background-color .24s,border-color .24s}
 @supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .nav-inner {
-    background:linear-gradient(115deg,#fff9edea,#ffede5b8 65%,#fff5e8d9);
+    background:rgba(255,250,240,.95);
     -webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);
   }
+  [data-home]:not(.is-scrolled) .nav-inner {background-color:rgba(255,250,240,.82)}
 }
 .nav-brand {display:flex;align-items:center;gap:9px;line-height:1.2;white-space:nowrap}
 .nav-brand .school-emblem {width:46px;height:46px;clip-path:circle(43.3%)}
@@ -38,9 +40,6 @@ summary.nav-item::after {
   transform:translateY(-2px) rotate(45deg);transition:transform .18s;
 }
 details[open] > summary.nav-item::after {transform:translateY(1px) rotate(225deg)}
-.nav-split {display:inline-grid;grid-template-columns:max-content 22px;align-items:center;position:relative;flex:none}
-#site-nav .nav-split details {position:static}
-.nav-split summary.nav-item {width:22px;justify-content:center}
 .nav-item::before {
   content:"";position:absolute;left:0;bottom:5px;width:18px;height:2px;
   background:var(--nav-red);opacity:0;transition:opacity .2s;
@@ -53,11 +52,16 @@ details[open] > summary.nav-item::after {transform:translateY(1px) rotate(225deg
   border:1px solid #e5dcd2;border-radius:11px;background:#fffcf7;color:var(--nav-ink);
   box-shadow:0 7px 22px #3a241512;font-size:14px;
 }
-.nav-sub a,.nav-pending {display:flex;align-items:center;justify-content:space-between;min-height:40px;padding:6px 10px}
+.nav-sub a {display:flex;align-items:center;justify-content:space-between;min-height:40px;padding:6px 10px}
 .nav-sub a {border-radius:5px}
+.org-menu {width:392px;background:#fffaf0;padding:10px}
+.org-menu li:first-child {grid-column:1/-1;border-bottom:1px solid #e7dac8;padding-bottom:4px;margin-bottom:4px}
+.org-menu li:first-child a {font:600 17px/1.5 var(--editorial);color:#852a3b}
+.org-menu a {display:block;padding:8px 10px}
+.org-menu small {display:block;font:400 12px/1.6 var(--body);color:#665a50}
+details[open] > .org-menu {display:grid;grid-template-columns:1fr 1fr;column-gap:8px}
+.nav-fallback {display:none}
 .nav-sub a:hover,.nav-sub a[aria-current] {background:#f6e9e5;color:var(--nav-red)}
-.nav-pending {color:#645d59}
-.nav-pending small {font-size:11px;color:#6c625e}
 .nav-contact {
   justify-self:end;display:inline-flex;align-items:center;justify-content:center;
   min-height:40px;padding-inline:20px;border-radius:8px;background:var(--nav-red);color:white;
@@ -89,6 +93,8 @@ details[open] > summary.nav-item::after {transform:translateY(1px) rotate(225deg
   .nav-brand small {font-size:10px;letter-spacing:.08em}
   .nav-inner #site-nav,.nav-inner .nav-contact {display:none}
   .nav-toggle {display:block}
+  .site-header:not(.nav-ready) .nav-toggle {display:none}
+  .nav-fallback {display:block}
   #mobile-nav {
     position:fixed;inset:0 0 auto auto;margin:0;width:min(100%,420px);max-width:100%;
     max-height:100dvh;overflow:auto;overscroll-behavior:contain;border-radius:0 0 0 12px;
@@ -101,13 +107,9 @@ details[open] > summary.nav-item::after {transform:translateY(1px) rotate(225deg
   .nav-item.current {color:var(--nav-red)}
   .nav-item::before {bottom:4px}
   summary.nav-item::after {margin-right:6px}
-  .nav-split {display:grid;grid-template-columns:1fr 44px}
-  .nav-split details {display:contents}
-  .nav-split details:not([open]) > .nav-sub {display:none}
-  .nav-split summary.nav-item {width:44px}
-  .nav-split .nav-sub {grid-column:1 / -1}
   .nav-sub {position:static;width:auto;padding:3px 4px 8px 12px;border:0;border-radius:0;background:transparent;box-shadow:none}
-  .nav-sub a,.nav-pending {min-height:44px}
+  .nav-sub a {min-height:44px}
+  details[open] > .org-menu {display:block}
   .panel-content .nav-contact {margin-top:20px;min-height:44px}
 }
 @media(prefers-reduced-motion:reduce){
